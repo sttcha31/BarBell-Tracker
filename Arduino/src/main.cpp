@@ -1,3 +1,5 @@
+#include <Arduino.h>
+#include "BenchPress.h"
 #include "Arduino_BMI270_BMM150.h"
 
 struct Direction { // Always Normalize to be 1
@@ -11,7 +13,8 @@ struct Vector {
   float maginture;
 };
 
-float get_magnitude(float x, float y, float z);
+
+float get_magnitude(float, float, float);
 
 void setup() {
   // put your setup code here, to run once:
@@ -39,7 +42,7 @@ void loop() {
   if (IMU.accelerationAvailable()) {
     IMU.readAcceleration(x, y, z);
     if(abs(get_magnitude(x,y,z)-1) < 0.2){
-      DownDirection = {x/get_magnitude(x,y,z), y/get_magnitude(x,y,z), z/get_magnitude(x,y,z)};
+      DownDirection = {-x/get_magnitude(x,y,z), -y/get_magnitude(x,y,z), -z/get_magnitude(x,y,z)};
     }
 
   }
@@ -48,4 +51,3 @@ void loop() {
 inline float get_magnitude(float x, float y, float z){
   return sqrt(x*x + y*y + z*z);
 }
-
