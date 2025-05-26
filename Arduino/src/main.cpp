@@ -14,8 +14,6 @@ struct Vector {
 };
 
 
-float get_magnitude(float, float, float);
-
 void setup() {
   // put your setup code here, to run once:
   Serial.begin(9600);
@@ -41,13 +39,6 @@ void loop() {
   Direction DownDirection = Direction{0,0,1};
   if (IMU.accelerationAvailable()) {
     IMU.readAcceleration(x, y, z);
-    if(abs(get_magnitude(x,y,z)-1) < 0.2){
-      DownDirection = {-x/get_magnitude(x,y,z), -y/get_magnitude(x,y,z), -z/get_magnitude(x,y,z)};
-    }
-
+    
   }
-}
-
-inline float get_magnitude(float x, float y, float z){
-  return sqrt(x*x + y*y + z*z);
 }
