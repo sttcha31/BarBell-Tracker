@@ -1,5 +1,5 @@
 #include <Arduino.h>
-#include "BenchPress.h"
+#include "BarbellExercise.h"
 #include "Arduino_BMI270_BMM150.h"
 
 struct Direction { // Always Normalize to be 1
@@ -7,12 +7,6 @@ struct Direction { // Always Normalize to be 1
   float y;
   float z;
 };
-
-struct Vector {
-  Direction direction;
-  float maginture;
-};
-
 
 void setup() {
   // put your setup code here, to run once:
@@ -39,6 +33,6 @@ void loop() {
   Direction DownDirection = Direction{0,0,1};
   if (IMU.accelerationAvailable()) {
     IMU.readAcceleration(x, y, z);
-    
+
   }
 }

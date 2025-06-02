@@ -1,6 +1,6 @@
-#include "BarbellExersise.h"
+#include "BarbellExercise.h"
 
-class BenchPress : public BarbellExersise {
+class BenchPress : public BarbellExercise {
     public:
         BenchPress();
 

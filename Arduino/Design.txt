@@ -1,0 +1,22 @@
+Classes:
+    CircularBuffer: 
+        -keeps moving average
+
+    BarbellExercise: Parent class for all exercises
+        - has-a CircularBuffer which holds 
+        - has a function that continiously reads acceleration data
+        - keeps a current state
+            - not-started
+            - starting (user is current moving barbell to start position)
+            - ready
+            - eccentric
+            - concentric
+        - array of data for every rep;
+        - number of reps complete
+    RepData struct
+        -   average force applied
+        -   
+            
+
+
+
