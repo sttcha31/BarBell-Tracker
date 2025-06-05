@@ -22,6 +22,9 @@ class CircularBuffer {
             sum+=input;
             data[head] = input;
             head = (head+1) % Size; 
+            if(head = 0){
+                full = true;
+            }
         }
 
         T get(size_t index) const {
@@ -36,6 +39,7 @@ class CircularBuffer {
             } else {
                 return sum / head;
             }
+            
         }
 
     private:

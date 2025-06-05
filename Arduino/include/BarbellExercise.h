@@ -4,10 +4,14 @@
 
 #include "CircularBuffer.h"
 
+enum Unit {
+  kg,
+  lb
+};
 
 class BarbellExercise {
     public: 
-        BarbellExercise();
+        BarbellExercise(float weight, Unit unit);
         void start();
         float get_magnitude(float, float, float);
         void update_position();
@@ -17,6 +21,8 @@ class BarbellExercise {
         Vector downDirection = {0, 0, -1};
         Vector position = {0,0,0};
         Vector velocity = {0,0,0};
+        float weight_;
+
 };
 
 #endif

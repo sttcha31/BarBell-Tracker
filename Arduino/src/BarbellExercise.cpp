@@ -2,7 +2,11 @@
 #include <MadgwickAHRS.h>
 #include "math.h"
 
-BarbellExercise::BarbellExercise() {}
+BarbellExercise::BarbellExercise(float weight, Unit unit) : weight_(weight) { 
+  if (unit == Unit::lb){
+    weight*= 0.45359237;
+  }
+};
 
 float BarbellExercise::get_magnitude(float x, float y, float z){
   return sqrt(x*x + y*y + z*z);

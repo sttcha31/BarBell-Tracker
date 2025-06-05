@@ -30,7 +30,6 @@ void setup() {
 void loop() {
   // put your main code here, to run repeatedly:
   float x, y, z;
-  Direction DownDirection = Direction{0,0,1};
   if (IMU.accelerationAvailable()) {
     IMU.readAcceleration(x, y, z);
 
