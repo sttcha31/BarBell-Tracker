@@ -3,11 +3,13 @@
 #include "Arduino_BMI270_BMM150.h"
 
 #include "CircularBuffer.h"
+#include "Set.h"
 
 enum Unit {
   kg,
   lb
 };
+
 
 class BarbellExercise {
     public: 
@@ -22,6 +24,7 @@ class BarbellExercise {
         Vector position = {0,0,0};
         Vector velocity = {0,0,0};
         float weight_;
+        Set set_;
 
 };
 
