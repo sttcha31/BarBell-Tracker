@@ -4,6 +4,7 @@
 
 #include "CircularBuffer.h"
 #include "Set.h"
+#include "vector_math.h"
 
 enum Unit {
   kg,
@@ -15,14 +16,13 @@ class BarbellExercise {
     public: 
         BarbellExercise(float weight, Unit unit);
         void start();
-        float get_magnitude(float, float, float);
         void update_position();
-        void insert(float x, float y, float z);
     protected:
         bool waitSart = true; // waiting for user to start exersise.
-        Vector downDirection = {0, 0, -1};
+        Vector gravity = {0, 0, -1};
         Vector position = {0,0,0};
         Vector velocity = {0,0,0};
+        CircularBuffer<float, 15> workBuffer;
         float weight_;
         Set set_;
 

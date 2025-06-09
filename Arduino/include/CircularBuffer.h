@@ -3,11 +3,7 @@
 
 #include <cstddef>
 
-struct Vector {
-  float x;
-  float y;
-  float z;
-};
+
 
 template  <typename T, size_t Size>
 
@@ -31,6 +27,10 @@ class CircularBuffer {
             if (!full && index >= head) return data[0]; // basic safeguard
             size_t realIndex = (head + index) % Size;
             return data[realIndex];
+        }
+
+        T back() const {
+            return data[head];
         }
 
         T get_average() const {
