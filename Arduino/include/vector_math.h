@@ -7,20 +7,21 @@ struct Vector {
   float z;
 };
 
-float dot(const Vector& a, const Vector& b){
-    return a.x * b.x + a.y *b.y + a.z * b.z;
-}
+float dot(const Vector& a, const Vector& b);
 
-float get_magnitude(const Vector& v){
-  return sqrt(v.x*v.x + v.y*v.y + v.z*v.z);
-}
+float magnitude(const Vector& v);
+
+void normalize(Vector &v);
+
+Vector add(const Vector &a, const Vector& b);
+
+Vector scalar_mult(const Vector &v, float x);
 
 //converts IMU force readings to real acceleration readings(0 m/s at rest);
-Vector get_linear_acc(const Vector& v, const Vector& g){
+Vector get_linear_acc(const Vector& v, const Vector& g);
 
-}
+//projects vector a onto vector b, and returns the scalar
+float project(const Vector &a, const Vector &b);
 
-void update(const Vector &a, Vector &v, Vector &p, float dt){
-    
-}
+void update(const Vector &a, Vector &v, Vector &p, float dt);
 #endif 

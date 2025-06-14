@@ -1,3 +1,4 @@
+
 #include "BarbellExercise.h"
 
 class BenchPress : public BarbellExercise {

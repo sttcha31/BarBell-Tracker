@@ -1,7 +1,7 @@
 #ifndef BARBELLEXERCISE_H
 #define BARBELLEXERCISE_H
 #include "Arduino_BMI270_BMM150.h"
-
+#include <MadgwickAHRS.h>
 #include "CircularBuffer.h"
 #include "Set.h"
 #include "vector_math.h"
@@ -11,18 +11,36 @@ enum Unit {
   lb
 };
 
+enum State {
+  not_started,
+  staring, //lifting up the weight
+  ready,   //weight is stationary, user ready to start
+  eccentric,
+  concentric,
+};
+
 
 class BarbellExercise {
     public: 
         BarbellExercise(float weight, Unit unit);
+        void calibrate();
         void start();
-        void update_position();
+        void update_state();
     protected:
-        bool waitSart = true; // waiting for user to start exersise.
-        Vector gravity = {0, 0, -1};
-        Vector position = {0,0,0};
-        Vector velocity = {0,0,0};
-        CircularBuffer<float, 15> workBuffer;
+        //Vectors
+        Vector gravity {0, 0, -1};
+        Vector position {0,0,0};
+        Vector velocity {0,0,0};
+
+        //Orientation Tracking
+        Madgwick filter;
+        float q0, q1, q2, q3;
+
+        //Sensor frequency
+        static constexpr double dt {1.0 / 104}; //TODO(STEVE) Update this since we are now using the magnometer as well
+
+        CircularBuffer<float, 15> velocity_buffer;
+        State state = not_started;
         float weight_;
         Set set_;
 

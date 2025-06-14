@@ -18,7 +18,7 @@ class CircularBuffer {
             sum+=input;
             data[head] = input;
             head = (head+1) % Size; 
-            if(head = 0){
+            if(head == 0){
                 full = true;
             }
         }
