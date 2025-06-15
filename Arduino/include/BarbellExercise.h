@@ -5,6 +5,7 @@
 #include "CircularBuffer.h"
 #include "Set.h"
 #include "vector_math.h"
+#include "User.h"
 
 enum Unit {
   kg,
@@ -13,7 +14,7 @@ enum Unit {
 
 enum State {
   not_started,
-  staring, //lifting up the weight
+  starting, //lifting up the weight
   ready,   //weight is stationary, user ready to start
   eccentric,
   concentric,
@@ -22,7 +23,7 @@ enum State {
 
 class BarbellExercise {
     public: 
-        BarbellExercise(float weight, Unit unit);
+        BarbellExercise(float weight, Unit unit, User user);
         void calibrate();
         void start();
         void update_state();
@@ -41,8 +42,12 @@ class BarbellExercise {
 
         CircularBuffer<float, 15> velocity_buffer;
         State state = not_started;
+        Vector top;
+        Vector bottom;
+        
         float weight_;
         Set set_;
+        User user_;
 
 };
 

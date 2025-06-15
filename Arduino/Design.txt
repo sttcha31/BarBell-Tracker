@@ -16,6 +16,10 @@ Classes:
     RepData struct
         -   average force applied
         -   
+
+Rep Detection:
+    -Every time a user creates does an exercise for the first time, have them show an example rep so the model can learn
+    - Multiple user can use the same phone, keep track of each user and their range of motion on each rep
             
 
 

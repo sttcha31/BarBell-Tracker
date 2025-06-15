@@ -1,6 +1,8 @@
 #include "BarbellExercise.h"
 #include "vector_math.h"
-BarbellExercise::BarbellExercise(float weight, Unit unit) : weight_(weight) { 
+#include "User.h"
+
+BarbellExercise::BarbellExercise(float weight, Unit unit, User user) : weight_(weight), user_(user) { 
   if (unit == Unit::lb){
     const double lb_to_kg { 0.45359237 };
     weight*= lb_to_kg;
@@ -67,7 +69,16 @@ void BarbellExercise::start(){
 void BarbellExercise::update_state(){
   if(state == State::not_started){
     if(velocity_buffer.get_average() > 0){
-      state = State::staring;
+      state = State::starting;
     }
+  }
+  else if(state == State::starting && velocity_buffer.get_average() < 0){
+    state = State::eccentric;
+  }
+  else if (state == State::eccentric && velocity_buffer.get_average() > 0){
+    state = State::concentric;
+  }
+  else if (state == State::concentric && velocity_buffer.get_average() <0){
+    state = State::eccentric;
   }
 }
