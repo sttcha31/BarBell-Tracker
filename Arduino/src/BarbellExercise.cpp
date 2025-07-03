@@ -1,6 +1,10 @@
+#include <cmath>
+
 #include "BarbellExercise.h"
-#include "vector_math.h"
+#include "Matrix.h"
 #include "User.h"
+#include "vector_math.h"
+
 
 BarbellExercise::BarbellExercise(float weight, Unit unit, User user) : weight_(weight), user_(user) { 
   if (unit == Unit::lb){
@@ -81,4 +85,21 @@ void BarbellExercise::update_state(){
   else if (state == State::concentric && velocity_buffer.get_average() <0){
     state = State::eccentric;
   }
+}
+
+Matrix BarbellExercise::CreateRotationMatrix(Vector g){
+  Vector w = {0,0,-1};
+  // 1. normalize g
+  normalize(g);
+  // 2. compute axis of rotation (u) 
+  Vector u = cross(g, w);
+  normalize(u);
+  float theta = acos(dot(g,w));
+  // Apply Rodigues Rotaiton FOrmula
+  Matrix I = Matrix();
+  Matrix ux = Matrix({0, -u.z, u.y,
+                      u.z, 0, -u.x,
+                      -u.y, u.x, 0});
+  return I + ux*sin(theta) + (ux*ux) * (1-cos(theta));
+
 }

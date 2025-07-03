@@ -3,6 +3,7 @@
 #include "Arduino_BMI270_BMM150.h"
 #include <MadgwickAHRS.h>
 #include "CircularBuffer.h"
+#include "Matrix.h"
 #include "Set.h"
 #include "vector_math.h"
 #include "User.h"
@@ -27,6 +28,9 @@ class BarbellExercise {
         void calibrate();
         void start();
         void update_state();
+
+        Matrix CreateRotationMatrix(const Vector g);
+        void RotateVectorSpace();
     protected:
         //Vectors
         Vector gravity {0, 0, -1};

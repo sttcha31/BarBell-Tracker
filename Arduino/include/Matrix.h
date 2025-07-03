@@ -19,11 +19,12 @@ class Matrix {
     public:
         Matrix(); // Identity Matrix
         Matrix(Instantiator in);
-        float operator[](Index index);
-        Vector operator*(Vector &v);
+        float operator[](Index index) const;
+        float& operator[](Index index);
+        Vector operator*(const Vector &v);
         Matrix operator*(float scalar);
-        Matrix operator*(Matrix &other);
-        Matrix operator+(Matrix &other);
+        Matrix operator*(const Matrix &other);
+        Matrix operator+(const Matrix &other);
         
     private:
         float data[3][3];

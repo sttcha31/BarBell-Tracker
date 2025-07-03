@@ -26,11 +26,15 @@ Matrix::Matrix(Instantiator in){
     data[2][2] = in.a33;
 }
 
-float Matrix::operator[](Index index){
+float Matrix::operator[](Index index) const{
     return data[index.r][index.c];
 }
 
-Vector Matrix::operator*(Vector &v){
+float& Matrix::operator[](Index index){
+    return data[index.r][index.c];
+}
+
+Vector Matrix::operator*(const Vector &v){
     return { v.x * data[0][0] + v.y * data[0][1] + v.z * data[0][2],
              v.x * data[1][0] + v.y * data[1][1] + v.z * data[1][2],
              v.x * data[2][0] + v.y * data[2][1] + v.z * data[2][2]};
@@ -44,7 +48,7 @@ Matrix Matrix::operator*(float scalar) {
     });
 }
 
-Matrix Matrix::operator*(Matrix &other) {
+Matrix Matrix::operator*(const Matrix &other) {
     float a11 = data[0][0] * other[{0,0}] + data[0][1] * other[{1,0}] + data[0][2] * other[{2,0}];
     float a12 = data[0][0] * other[{0,1}] + data[0][1] * other[{1,1}] + data[0][2] * other[{2,1}];
     float a13 = data[0][0] * other[{0,2}] + data[0][1] * other[{1,2}] + data[0][2] * other[{2,2}];
@@ -60,7 +64,7 @@ Matrix Matrix::operator*(Matrix &other) {
     return Matrix({a11, a12, a13, a21, a22, a23, a31, a32, a33});
 }
 
-Matrix Matrix::operator+(Matrix &other){
+Matrix Matrix::operator+(const Matrix &other){
     return Matrix({data[0][0] + other[{0,0}], data[0][1] + other[{0,1}], data[0][2] + other[{0,1}],
                    data[1][0] + other[{1,0}], data[1][1] + other[{1,1}], data[0][2] + other[{1,1}],
                    data[2][0] + other[{2,0}], data[2][1] + other[{2,1}], data[0][2] + other[{2,1}]});
