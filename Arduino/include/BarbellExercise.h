@@ -45,6 +45,9 @@ class BarbellExercise {
         Vector top;
         Vector bottom;
         
+        //rep tracking
+        float vertical_displacement;
+        
         float weight_;
         Set set_;
         User user_;

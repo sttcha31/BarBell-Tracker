@@ -9,6 +9,8 @@ struct Vector {
 
 float dot(const Vector& a, const Vector& b);
 
+Vector cross(const Vector& a, const Vector& b);
+
 float magnitude(const Vector& v);
 
 void normalize(Vector &v);

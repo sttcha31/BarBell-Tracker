@@ -6,6 +6,14 @@ float dot(const Vector& a, const Vector& b){
     return a.x * b.x + a.y *b.y + a.z * b.z;
 }
 
+Vector cross(const Vector& a, const Vector& b) {
+    return Vector{
+        a.y * b.z - a.z * b.y,
+        a.z * b.x - a.x * b.z,
+        a.x * b.y - a.y * b.x
+    };
+}
+
 float magnitude(const Vector& v){
   return sqrt(v.x*v.x + v.y*v.y + v.z*v.z);
 }
