@@ -1,8 +1,8 @@
 #include "Matrix.h"
 
 Matrix::Matrix() {
-    for(int i = 0; i < 2; i++){
-        for(int j = 0; j < 2; j++){
+    for(int i = 0; i < 3; i++){
+        for(int j = 0; j < 3; j++){
             if(i == j){
                 data[i][j] = 1;
             } else {
@@ -12,7 +12,7 @@ Matrix::Matrix() {
     }
 }
 
-Matrix::Matrix(Instantiator in){
+Matrix::Matrix(MatrixStruct in){
     data[0][0] = in.a11;
     data[0][1] = in.a12;
     data[0][2] = in.a13;
@@ -26,6 +26,11 @@ Matrix::Matrix(Instantiator in){
     data[2][2] = in.a33;
 }
 
+MatrixStruct Matrix::get(){
+    return {data[0][0], data[0][1], data[0][2],
+            data[1][0], data[1][1], data[1][2],
+            data[2][0], data[2][1], data[2][2]};
+}
 float Matrix::operator[](Index index) const{
     return data[index.r][index.c];
 }
@@ -65,7 +70,7 @@ Matrix Matrix::operator*(const Matrix &other) {
 }
 
 Matrix Matrix::operator+(const Matrix &other){
-    return Matrix({data[0][0] + other[{0,0}], data[0][1] + other[{0,1}], data[0][2] + other[{0,1}],
-                   data[1][0] + other[{1,0}], data[1][1] + other[{1,1}], data[0][2] + other[{1,1}],
-                   data[2][0] + other[{2,0}], data[2][1] + other[{2,1}], data[0][2] + other[{2,1}]});
+    return Matrix({data[0][0] + other[{0,0}], data[0][1] + other[{0,1}], data[0][2] + other[{0,2}],
+                   data[1][0] + other[{1,0}], data[1][1] + other[{1,1}], data[1][2] + other[{1,2}],
+                   data[2][0] + other[{2,0}], data[2][1] + other[{2,1}], data[2][2] + other[{2,2}]});
 }

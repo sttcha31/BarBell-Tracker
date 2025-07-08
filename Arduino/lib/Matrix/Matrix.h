@@ -2,10 +2,14 @@
 #define MATRIX_H
 
 #include <cstddef>
-#include "vector_math.h"
 
+struct Vector {
+  float x;
+  float y;
+  float z;
+};
 
-struct Instantiator{
+struct MatrixStruct{
     float a11, a12, a13, 
           a21, a22, a23, 
           a31, a32, a33;
@@ -18,7 +22,8 @@ struct Index {
 class Matrix {
     public:
         Matrix(); // Identity Matrix
-        Matrix(Instantiator in);
+        Matrix(MatrixStruct in);
+        MatrixStruct get();
         float operator[](Index index) const;
         float& operator[](Index index);
         Vector operator*(const Vector &v);

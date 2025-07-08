@@ -2,11 +2,6 @@
 #include "BarbellExercise.h"
 #include "Arduino_BMI270_BMM150.h"
 
-struct Direction { // Always Normalize to be 1
-  float x;
-  float y;
-  float z;
-};
 
 void setup() {
   // put your setup code here, to run once:
@@ -32,6 +27,5 @@ void loop() {
   float x, y, z;
   if (IMU.accelerationAvailable()) {
     IMU.readAcceleration(x, y, z);
-
   }
 }

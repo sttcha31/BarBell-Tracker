@@ -1,11 +1,7 @@
 #ifndef VECTOR_MATH_H
 #define VECTOR_MATH_H
 
-struct Vector {
-  float x;
-  float y;
-  float z;
-};
+#include "Matrix.h"
 
 float dot(const Vector& a, const Vector& b);
 
