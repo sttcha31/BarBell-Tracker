@@ -1,27 +1,20 @@
 #include <Arduino.h> // Essential for setup() and loop() and Serial
-#include <cassert>   // We'll replace assert with custom checks, but keeping for reference if you want to fall back
 #include <cmath>     // For std::fabs
 #include <Matrix.h>  // Assuming this is now located in lib/MatrixLib/include/
 
-// --- Test Reporting Global Variables ---
 int totalTestsRun = 0;
 int totalTestsPassed = 0;
 
-// --- Helper Functions (same as yours) ---
-// Helper: compare floats
 bool almost_equal(float a, float b, float eps = 1e-6f) {
     return std::fabs(a - b) < eps;
 }
 
-// Helper: compare Vectors
 bool vectors_equal(const Vector& a, const Vector& b, float eps = 1e-6f) {
     return almost_equal(a.x, b.x, eps)
         && almost_equal(a.y, b.y, eps)
         && almost_equal(a.z, b.z, eps);
 }
 
-// --- Custom Assertion Macro ---
-// This macro will print PASS/FAIL messages and update test counters
 #define CUSTOM_ASSERT(condition, test_name, message) \
     totalTestsRun++; \
     if (condition) { \
@@ -173,14 +166,12 @@ void TestAddition() {
 }
 
 
-// --- Arduino setup() function ---
 void setup() {
-    Serial.begin(115200); // Initialize serial communication at a common baud rate
-    delay(2000);          // Give some time for the serial monitor to connect
+    Serial.begin(115200); 
+    delay(2000);         
 
     Serial.println("\n--- Starting Custom Matrix Tests ---");
 
-    // Call all your test functions
     TestDefaultConstructor();
     TestInitConstructor();
     TestScalarMult();
@@ -203,8 +194,4 @@ void setup() {
     }
 }
 
-// --- Arduino loop() function ---
-void loop() {
-    // For unit tests that run once in setup(), the loop() function can remain empty.
-    // The board will typically stay in this empty loop after tests complete.
-}
+void loop() {}
