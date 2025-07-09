@@ -1,35 +1,15 @@
-#include <Arduino.h> // Essential for setup() and loop() and Serial
-#include <cmath>     // For std::fabs
-#include <Matrix.h>  // Assuming this is now located in lib/MatrixLib/include/
+#include <Arduino.h> 
+#include <Matrix.h>  
+#include <test_util.h>
 
-int totalTestsRun = 0;
-int totalTestsPassed = 0;
+namespace MatrixTests {
 
-bool almost_equal(float a, float b, float eps = 1e-6f) {
-    return std::fabs(a - b) < eps;
-}
 
 bool vectors_equal(const Vector& a, const Vector& b, float eps = 1e-6f) {
     return almost_equal(a.x, b.x, eps)
         && almost_equal(a.y, b.y, eps)
         && almost_equal(a.z, b.z, eps);
 }
-
-#define CUSTOM_ASSERT(condition, test_name, message) \
-    totalTestsRun++; \
-    if (condition) { \
-        Serial.print("  [PASS] "); \
-        Serial.print(test_name); \
-        Serial.print(": "); \
-        Serial.println(message); \
-        totalTestsPassed++; \
-    } else { \
-        Serial.print("  [FAIL] "); \
-        Serial.print(test_name); \
-        Serial.print(": "); \
-        Serial.println(message); \
-    }
-
 
 // --- Test Functions ---
 
@@ -195,3 +175,5 @@ void setup() {
 }
 
 void loop() {}
+
+} //namespace MatrixTests

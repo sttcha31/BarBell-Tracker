@@ -13,6 +13,8 @@ BarbellExercise::BarbellExercise(float weight, Unit unit, User user) : weight_(w
   }
 };
 
+BarbellExercise::BarbellExercise(){};
+
 void BarbellExercise::calibrate(){
   filter.begin(1.0/dt);
   unsigned long startTime = millis();

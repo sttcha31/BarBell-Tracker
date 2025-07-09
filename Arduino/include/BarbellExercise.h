@@ -24,6 +24,7 @@ enum State {
 
 class BarbellExercise {
     public: 
+        BarbellExercise(); // To facilitate testing
         BarbellExercise(float weight, Unit unit, User user);
         void calibrate();
         void start();
